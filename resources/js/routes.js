@@ -1,7 +1,7 @@
 import AllContacts from './components/AllContacts.vue';
-import AddContact from './components/addContact-old.vue';
+import AddContact from './components/addContact.vue';
 import EditContact from './components/EditContact.vue';
-import addContact from "./components/addContact-old";
+import addContact from "./components/addContact";
 
 export const routes = [
     {

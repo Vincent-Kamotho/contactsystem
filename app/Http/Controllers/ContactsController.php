@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\contacts;
 use App\Http\Resources\ContactResource;
-
+use PHPUnit\Runner\Exception;
 
 
 class ContactsController extends Controller
@@ -80,6 +80,18 @@ class ContactsController extends Controller
         return redirect('addcontact')->with('message', 'Contact Successfully saved!');
     }
 
+    public function insert(Request $request)
+    {
+        $contacts = new Contacts();
+
+        $contacts->fullname = $request->input('fullname');
+        $contacts->phone = $request->input('phone');
+        $contacts->email = $request->input('email');
+
+        $contacts->save();
+        return redirect('addcontact')->with('message', 'Contact Successfully saved!');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -137,7 +149,7 @@ class ContactsController extends Controller
         $contacts->email = $request->get('email');
         $contacts->image = $request->get('image');
 
-        DB::update('update contacts set fullname = ?, phone =?, email = ?, image = ? where id = ?', [$fullname, $phone, $email, $image]);
+        DB::update('update contacts set fullname = ?, phone =?, email = ?, image = ? where id = ?', ['$fullname', '$phone', '$email', '$image']);
         return redirect('viewRecords')->with('Success', 'Data Updated');
     }
 
@@ -169,16 +181,44 @@ class ContactsController extends Controller
     }
 
 
-    public function deleteform($id)
-    {
-        DB::delete('delete from contacts where id = ?', [$id]);
-        return redirect('userhomepage')->with('success', 'Contact Deleted');
-    }
+//    public function deleteform($id)
+//    {
+//        DB::delete('delete from contacts where id = ?', [$id]);
+//        return redirect('userhomepage')->with('success', 'Contact Deleted');
+//    }
 
     public function getAPIContacts()
     {
          return ContactResource::collection(contacts::all());
     }
 
+    public function remove(Request  $request)
+    {
+        //first identify the entry to delete
+        if(!$contact = Contacts::find($request['id'])){
+            throw new \Exception("Contact not found. Please try again.");
+        }
 
+        //delete the entry
+        $contact->delete();
+
+        //return response
+        return response()->json(['Message'=>'Contact deleted successfully']);
+    }
+
+    public function changer(Request $request){
+        //  1: Identify the entry to delete
+
+        if(!$contact = Contacts::find($request['contactid'])){
+            throw new \Exception("Contact not found. Please try again.");
+        }
+        $contact->id = $request['contactid'];
+        $contact->fullname = $request['names'];
+        $contact->phone = $request['phone'];
+        $contact->email = $request['email'];
+
+        $contact->save();
+
+        return response()->json(['Message'=>'Contact updated successfully']);
+    }
 }

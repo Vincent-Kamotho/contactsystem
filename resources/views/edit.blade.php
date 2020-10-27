@@ -10,7 +10,7 @@
 <edit-contact></edit-contact>
 	<div class="row">
 		<div class="col-md-6"><br/>
-		<h3>Edit Records</h3> <br/>
+{{--		<h3>Edit Records</h3> <br/>--}}
 		@if(count($errors) > 0)
 
 		<div class="alert alert-danger">
@@ -20,26 +20,26 @@
 				@endforeach
 			</ul>
 		</div>
-		<edit-contact></edit-contact>
-		<form method="post" action="">
-			{{csrf_field()}}
-			
-			<div class = "form group">
-				<input type="text" name="fullname" class="form-control" value="" placeholder="Enter fullname"/>
-			</div>
 
-			<div class = "form group">
-				<input type="text" name="phone" class="form-control" value="" placeholder="Enter phone number"/>
-			</div>
+{{--		<form method="post" action="">--}}
+{{--			{{csrf_field()}}--}}
 
-			<div class = "form group">
-				<input type="email" name="email" class="form-control" value="" placeholder="Enter email"/>
-			</div>
+{{--			<div class = "form group">--}}
+{{--				<input type="text" name="fullname" class="form-control" value="" placeholder="Enter fullname"/>--}}
+{{--			</div>--}}
 
-			<div class = "form-group">
-				<input type="submit" class="btn btn-primary" value="Edit"/>
-			</div>
-		</form>
+{{--			<div class = "form group">--}}
+{{--				<input type="text" name="phone" class="form-control" value="" placeholder="Enter phone number"/>--}}
+{{--			</div>--}}
+
+{{--			<div class = "form group">--}}
+{{--				<input type="email" name="email" class="form-control" value="" placeholder="Enter email"/>--}}
+{{--			</div>--}}
+
+{{--			<div class = "form-group">--}}
+{{--				<input type="submit" class="btn btn-primary" value="Edit"/>--}}
+{{--			</div>--}}
+{{--		</form>--}}
 
 		@endif
 

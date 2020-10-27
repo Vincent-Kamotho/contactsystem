@@ -13,7 +13,7 @@
 			<h2>Sidebar</h2>
 			@csrf
 			<ul>
-				
+
 				<li><a href="{{asset('viewRecords')}}"><i class="fas fa-check-square"></i>List Contacts</a></li>
 				<li><a href="{{asset('addcontact')}}"><i class="fas fa-plus"></i>Add Contacts</a></li>
 
@@ -37,12 +37,12 @@
 			</ul>
 		</div>
 
-		
+
 		<div class="main-content">
 			@yield('content')
 
-			
-            
+
+
 
 			<div class = "row"><br/>
 				<div class="col-md-10">
@@ -55,7 +55,7 @@
                        </div>
                    @endif
 
-				    <div class="line" style="text-align:right;">
+				    <div class="line" style="text-align:right; margin-top:30px;">
 				    	<a href="addcontact" class = "btn btn-primary">Add Contacts</a>
 				    </div><br/>
 

@@ -46,3 +46,7 @@ Route::get('{any}', function (){
 
 
 Route::resource('contacts', 'ContactsController');
+Route::post('/addcontacts', 'ContactsController@insert');
+Route::post('/deletecontact', 'ContactsController@remove');
+Route::post('/contactedit', 'ContactsController@changer');
+
